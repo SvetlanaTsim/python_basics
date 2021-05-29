@@ -37,6 +37,16 @@ print (price_str)
 print(id(price_list))
 price_list.sort()
 print(price_list)
+
+# вариант печати в виде из задания А:
+string_list = []
+for price in price_list:
+    price_s = str(price).split('.')
+    if len(price_s[1]) < 2:
+        price_s[1]= price_s[1] + '0'
+    price_string_price = f'{int(price_s[0]):01d} руб {int(price_s[1]):02d} коп'
+    string_list.append(price_string_price)
+print (string_list)
 print(id(price_list)) # id тот же
 
 # C. Создать новый список, содержащий те же цены, но отсортированные по убыванию.
@@ -44,14 +54,32 @@ print(id(price_list)) # id тот же
 new_list = price_list.copy()
 new_list.reverse()
 print(new_list)
+# вариант печати в виде из задания А:
+string_list = []
+for price in new_list:
+    price_s = str(price).split('.')
+    if len(price_s[1]) < 2:
+        price_s[1]= price_s[1] + '0'
+    price_string_price = f'{int(price_s[0]):01d} руб {int(price_s[1]):02d} коп'
+    string_list.append(price_string_price)
+print (string_list)
 print(id(new_list)) # id другой
 print(id(price_list))
 #вариант 2
 new_price_list = sorted(price_list, reverse=True)
 print(new_price_list)
+# вариант печати в виде из задания А:
+string_list = []
+for price in new_price_list:
+    price_s = str(price).split('.')
+    if len(price_s[1]) < 2:
+        price_s[1]= price_s[1] + '0'
+    price_string_price = f'{int(price_s[0]):01d} руб {int(price_s[1]):02d} коп'
+    string_list.append(price_string_price)
+print (string_list)
 print(id(new_price_list)) # id другой
 print(id(price_list))
 
 # D. Вывести цены пяти самых дорогих товаров.
 # Сможете ли вывести цены этих товаров по возрастанию, написав минимум кода?
-print(new_price_list[:5])
+print(string_list[:5])
