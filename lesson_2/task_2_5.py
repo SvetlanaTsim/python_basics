@@ -22,6 +22,8 @@ price_list = [2.4, 15.42, 189.34, 4.24, 67.01, 154.18, 453.6, 231.4, 5.14, 56.87
 string_list = []
 for price in price_list:
     price_s = str(price).split('.')
+    if len(price_s[1]) < 2:
+        price_s[1]= price_s[1] + '0'
     price_string_price = f'{int(price_s[0]):01d} руб {int(price_s[1]):02d} коп'
     string_list.append(price_string_price)
 
