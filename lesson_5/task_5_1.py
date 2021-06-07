@@ -26,8 +26,3 @@ print(next(num_15))
 print(next(num_15))
 print(next(num_15))
 print(next(num_15)) #StopIteration
-
-
-
-
-
