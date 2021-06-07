@@ -9,11 +9,3 @@ print(next(nums_gen))
 print(next(nums_gen))
 print(next(nums_gen))
 # print(next(nums_gen)) #StopIteration
-
-
-
-# def next_num(num_gen):
-#     for num_gen in range(9):
-#         print(next(num_gen))
-#
-# next_num(nums_gen)
