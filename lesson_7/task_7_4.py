@@ -21,7 +21,7 @@ list_100 = []
 list_1000 = []
 list_10000 = []
 list_100000 = []
-list_1000000 = []
+list_10000000 = []
 for root, dir, files in os.walk('some_data'):
     for file in files:
         if os.stat(os.path.join(root, file)).st_size <= 100:
@@ -36,46 +36,37 @@ for root, dir, files in os.walk('some_data'):
         elif os.stat(os.path.join(root, file)).st_size <= 100000:
             list_100000.append(file)
             out_dict[100000] = len(list_100000)
-        else:
-            list_1000000.append(file)
-            out_dict[1000000] = len(list_1000000)
+        elif os.stat(os.path.join(root, file)).st_size <= 10000000:
+            list_10000000.append(file)
+            out_dict[10000000] = len(list_10000000)
 
 print(out_dict)
 
-# через list comprehensions (не работает с вложенными папками)
-# for root, dir, files in os.walk('some_data'):
-#     list_100_size = [file for file in files if os.stat(os.path.join(root, file)).st_size <= 100]
-#     list_1000_size = [file for file in files if os.stat(os.path.join(root, file)).st_size <= 1000
-#                     and os.stat(os.path.join(root, file)).st_size > 100 ]
-#     list_10000_size = [file for file in files if os.stat(os.path.join(root, file)).st_size <= 10000
-#                     and os.stat(os.path.join(root, file)).st_size > 1000]
-#     list_100000_size = [file for file in files if os.stat(os.path.join(root, file)).st_size <= 100000
-#                     and os.stat(os.path.join(root, file)).st_size > 10000]
-#
-# out_files_dict = {
-#     100: len(list_100_size),
-#     1000: len(list_1000_size),
-#     10000: len(list_10000_size),
-#     100000: len(list_100000_size)
-# }
-# print(out_files_dict)
-#
-# второй вариант через list comprehension
-# list_100_size = [file for file in files for root, dir, files in os.walk('some_data')
-#                  if os.stat(os.path.join(root, file)).st_size <= 100]
-# list_1000_size = [file for file in files for root, dir, files in os.walk('some_data')
-#                   if os.stat(os.path.join(root, file)).st_size <= 1000
-#                   and os.stat(os.path.join(root, file)).st_size > 100 ]
-# list_10000_size = [file for file in files for root, dir, files in os.walk('some_data')
-#                    if os.stat(os.path.join(root, file)).st_size <= 10000
-#                     and os.stat(os.path.join(root, file)).st_size > 1000]
-# list_100000_size = [file for file in files for root, dir, files in os.walk('some_data')
-#                     if os.stat(os.path.join(root, file)).st_size <= 100000
-#                     and os.stat(os.path.join(root, file)).st_size > 10000]
-# out_files_dict = {
-#     100: len(list_100_size),
-#     1000: len(list_1000_size),
-#     10000: len(list_10000_size),
-#     100000: len(list_100000_size)
-# }
-# print(out_files_dict)
+
+# через list comprehension
+
+list_100_size = [file for root, dir, files in os.walk('some_data') for file in files
+                 if os.stat(os.path.join(root, file)).st_size <= 100]
+list_1000_size = [file for root, dir, files in os.walk('some_data')
+                  for file in files if os.stat(os.path.join(root, file)).st_size <= 1000
+                  and os.stat(os.path.join(root, file)).st_size > 100]
+list_10000_size = [file for root, dir, files in os.walk('some_data')
+                  for file in files if os.stat(os.path.join(root, file)).st_size <= 10000
+                  and os.stat(os.path.join(root, file)).st_size > 1000]
+list_100000_size = [file for root, dir, files in os.walk('some_data')
+                  for file in files if os.stat(os.path.join(root, file)).st_size <= 100000
+                  and os.stat(os.path.join(root, file)).st_size > 10000]
+list_1000000_size = [file for root, dir, files in os.walk('some_data')
+                  for file in files if os.stat(os.path.join(root, file)).st_size <= 1000000
+                  and os.stat(os.path.join(root, file)).st_size > 100000]
+list_10000000_size = [file for root, dir, files in os.walk('some_data')
+                  for file in files if os.stat(os.path.join(root, file)).st_size <= 10000000
+                  and os.stat(os.path.join(root, file)).st_size > 1000000]
+out_files_dict = {
+    100: len(list_100_size),
+    1000: len(list_1000_size),
+    10000: len(list_10000_size),
+    100000: len(list_100000_size),
+    10000000: len(list_10000000_size)
+}
+print(out_files_dict)
