@@ -20,23 +20,6 @@ ValueError: wrong val -5
 
 """
 
-# def type_logger_1(func):
-#     @wraps(func)
-#     def wrapper(*args, **kwargs):
-#         func_result = func(*args, **kwargs)
-#         args_list = []
-#         for arg in args:
-#             string_arg = f'{func.__name__}({arg}, {type(arg)})'
-#             args_list.append(string_arg)
-#         return args_list, type(func_result)
-#     return wrapper
-#
-# @type_logger_1
-# def calc_cube_1(*args):
-#     """some info how to calc_cube_1"""
-#     args_calc_list = [arg ** 3 for arg in args]
-#     return args_calc_list
-
 from functools import wraps
 
 def val_checker(condidtion_func):
