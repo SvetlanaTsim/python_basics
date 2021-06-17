@@ -14,5 +14,4 @@ with open('nginx_logs.txt',encoding='utf-8') as f:
               code, size = CODE_SIZE.search(line).group().split(' ')
               result = (remote_addr, request_datetime, request_type, resourse, code, size)
               parse_list.append(result)
-       print(parse_list)
-
+print(parse_list)
